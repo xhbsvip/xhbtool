@@ -1,0 +1,60 @@
+identity:
+  name: "domhtml"
+  author: "jiangdao"
+  label:
+    en_US: "Get the HTML structure of the webpage"
+    zh_Hans: "获取网页html结构"
+    pt_BR: "xhbtool"
+description:
+  human:
+    en_US: "The input webpage address"
+    zh_Hans: "获取网页的html结构"
+    pt_BR: "jiangdao"
+  llm: "jiangdao"
+parameters:
+  - name: URL
+    type: string
+    required: true
+    label:
+      en_US: URL
+      zh_Hans: 网址
+      pt_BR: URL
+    human_description:
+      en_US: "Please enter the correct URL starting with http://or https://"
+      zh_Hans: "请输入正确的网址以http://或https://开头"
+      pt_BR: "jiangdao"
+    llm_description: "jiangdao"
+    form: llm
+  - name: use_dynamic_rendering
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: "Use Dynamic Rendering"
+      zh_Hans: "使用动态渲染"
+      pt_BR: "Use Dynamic Rendering"
+    human_description:
+      en_US: "Enable this option for JavaScript-heavy websites like Vue/React apps"
+      zh_Hans: "对于Vue/React等JavaScript密集型网站，请启用此选项"
+      pt_BR: "Enable this option for JavaScript-heavy websites"
+    llm_description: "Whether to use Selenium for dynamic rendering of JavaScript-heavy websites"
+    form: llm
+output_schema:
+  type: object
+  properties:
+    title:
+      type: string
+      description: "网站标题"
+    keywords:
+      type: string
+      description: "网站关键词"
+    description:
+      type: string
+      description: "网站描述"
+    URL:
+      type: string
+      description: "当前输入的网址"
+
+extra:
+  python:
+    source: tools/dom.py

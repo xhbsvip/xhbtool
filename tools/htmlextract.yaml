@@ -1,0 +1,159 @@
+identity:
+  name: "htmlextract"
+  author: "jiangdao"
+  label:
+    en_US: "HTML Content Extractor"
+    zh_Hans: "HTML内容提取器"
+    pt_BR: "HTML Content Extractor"
+description:
+  human:
+    en_US: "Extract specific content from HTML pages using CSS class selectors"
+    zh_Hans: "使用CSS类选择器从HTML页面提取特定内容"
+    pt_BR: "Extract specific content from HTML pages using CSS class selectors"
+  llm: "Extract news content from HTML pages by specifying CSS class names for title, content, tags, and source"
+parameters:
+  - name: news-url
+    type: string
+    required: true
+    label:
+      en_US: News URL
+      zh_Hans: 新闻网址
+      pt_BR: News URL
+    human_description:
+      en_US: "The URL of the news page to extract content from"
+      zh_Hans: "要提取内容的新闻页面网址"
+      pt_BR: "The URL of the news page to extract content from"
+    llm_description: "The URL of the news page to extract content from"
+    form: llm
+  - name: news-title
+    type: string
+    required: true
+    label:
+      en_US: Title Class Name
+      zh_Hans: 标题类名
+      pt_BR: Title Class Name
+    human_description:
+      en_US: "CSS class name(s) for the news title element, multiple classes separated by space or comma"
+      zh_Hans: "新闻标题元素的CSS类名，多个类名用空格或逗号分隔"
+      pt_BR: "CSS class name(s) for the news title element, multiple classes separated by space or comma"
+    llm_description: "CSS class name(s) for the news title element"
+    form: llm
+  - name: news-content
+    type: string
+    required: true
+    label:
+      en_US: Content Class Name
+      zh_Hans: 内容类名
+      pt_BR: Content Class Name
+    human_description:
+      en_US: "CSS class name(s) for the news content element, multiple classes separated by space or comma"
+      zh_Hans: "新闻内容元素的CSS类名，多个类名用空格或逗号分隔"
+      pt_BR: "CSS class name(s) for the news content element, multiple classes separated by space or comma"
+    llm_description: "CSS class name(s) for the news content element"
+    form: llm
+  - name: news-tag
+    type: string
+    required: false
+    label:
+      en_US: Tag Class Name
+      zh_Hans: 标签类名
+      pt_BR: Tag Class Name
+    human_description:
+      en_US: "CSS class name(s) for the news tag element, multiple classes separated by space or comma (optional)"
+      zh_Hans: "新闻标签元素的CSS类名，多个类名用空格或逗号分隔（可选）"
+      pt_BR: "CSS class name(s) for the news tag element, multiple classes separated by space or comma (optional)"
+    llm_description: "CSS class name(s) for the news tag element (optional)"
+    form: llm
+  - name: news-source
+    type: string
+    required: false
+    label:
+      en_US: Source Class Name
+      zh_Hans: 来源类名
+      pt_BR: Source Class Name
+    human_description:
+      en_US: "CSS class name(s) for the news source element, multiple classes separated by space or comma (optional)"
+      zh_Hans: "新闻来源元素的CSS类名，多个类名用空格或逗号分隔（可选）"
+      pt_BR: "CSS class name(s) for the news source element, multiple classes separated by space or comma (optional)"
+    llm_description: "CSS class name(s) for the news source element (optional)"
+    form: llm
+  - name: content-target
+    type: string
+    required: false
+    label:
+      en_US: Content Target
+      zh_Hans: 替换目标
+      pt_BR: Content Target
+    human_description:
+      en_US: "Target content to be replaced, multiple targets separated by comma or space"
+      zh_Hans: "需要替换的目标内容，多个内容用逗号或空格分隔"
+      pt_BR: "Target content to be replaced, multiple targets separated by comma or space"
+    llm_description: "Target content to be replaced, multiple targets separated by comma or space"
+    form: llm
+  - name: content-text
+    type: string
+    required: false
+    label:
+      en_US: Replacement Text
+      zh_Hans: 替换文本
+      pt_BR: Replacement Text
+    human_description:
+      en_US: "Replacement text, multiple texts separated by comma or space, corresponding to targets in order"
+      zh_Hans: "替换后的内容，多个内容用逗号或空格分隔，按顺序对应替换"
+      pt_BR: "Replacement text, multiple texts separated by comma or space, corresponding to targets in order"
+    llm_description: "Replacement text, multiple texts separated by comma or space, corresponding to targets in order"
+    form: llm
+  - name: deletecontent
+    type: string
+    required: false
+    label:
+      en_US: Delete Content
+      zh_Hans: 删除内容
+      pt_BR: Delete Content
+    human_description:
+      en_US: "Text content to be deleted from extracted results, supports comma or space separated multiple texts"
+      zh_Hans: "从提取结果中删除的文本内容，支持逗号或空格分隔多个文本"
+      pt_BR: "Text content to be deleted from extracted results, supports comma or space separated multiple texts"
+    llm_description: "Text content to be deleted from extracted results (title, content, keywords, description), supports comma or space separated multiple texts"
+    form: llm
+  - name: use_browser
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Use Browser
+      zh_Hans: 使用浏览器
+      pt_BR: Use Browser
+    human_description:
+      en_US: "Use headless browser to render JavaScript content (required for Vue/React/Angular SPAs)"
+      zh_Hans: "使用无头浏览器渲染JavaScript内容（Vue/React/Angular等SPA应用必需）"
+      pt_BR: "Use headless browser to render JavaScript content (required for Vue/React/Angular SPAs)"
+    llm_description: "Use headless browser to render JavaScript content, required for Vue/React/Angular SPAs and other dynamic websites"
+    form: form
+output_schema:
+  type: object
+  properties:
+    title:
+      type: string
+      description: "提取的新闻标题"
+    content:
+      type: string
+      description: "提取的新闻内容"
+    tags:
+      type: string
+      description: "提取的新闻标签"
+    source:
+      type: string
+      description: "提取的新闻来源"
+    keywords:
+      type: string
+      description: "网页关键词"
+    description:
+      type: string
+      description: "网页描述"
+    url:
+      type: string
+      description: "新闻网址"
+extra:
+  python:
+    source: tools/htmlextract.py

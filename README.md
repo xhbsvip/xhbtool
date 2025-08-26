@@ -1,2 +1,10 @@
-# XHB-Htmltool
-应用于dify的html相关插件
+## xhbtool
+
+**Author:** jiangdao
+**Version:** 0.0.1
+**Type:** tool
+
+### Description
+
+
+

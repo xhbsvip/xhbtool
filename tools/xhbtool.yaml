@@ -1,0 +1,30 @@
+identity:
+  name: "xhbtool"
+  author: "jiangdao"
+  label:
+    en_US: "xhbtool"
+    zh_Hans: "网站内容提取"
+    pt_BR: "xhbtool"
+description:
+  human:
+    en_US: "jiangdao"
+    zh_Hans: "jiangdao"
+    pt_BR: "jiangdao"
+  llm: "jiangdao"
+parameters:
+  - name: query
+    type: string
+    required: true
+    label:
+      en_US: Query string
+      zh_Hans: 查询语句
+      pt_BR: Query string
+    human_description:
+      en_US: "jiangdao"
+      zh_Hans: "jiangdao"
+      pt_BR: "jiangdao"
+    llm_description: "jiangdao"
+    form: llm
+extra:
+  python:
+    source: tools/xhbtool.py

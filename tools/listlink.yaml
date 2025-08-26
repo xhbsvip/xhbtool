@@ -1,0 +1,109 @@
+identity:
+  name: "listlink"
+  author: "jiangdao"
+  label:
+    en_US: "List Link Extractor"
+    zh_Hans: "列表链接提取器"
+    pt_BR: "List Link Extractor"
+description:
+  human:
+    en_US: "Extract links from news list pages based on CSS class selectors"
+    zh_Hans: "根据CSS类选择器从新闻列表页面提取链接"
+    pt_BR: "Extract links from news list pages based on CSS class selectors"
+  llm: "Extract links from news list pages using CSS class selectors and optional URL prefix"
+parameters:
+  - name: listurl
+    type: string
+    required: true
+    label:
+      en_US: List URL
+      zh_Hans: 列表网址
+      pt_BR: List URL
+    human_description:
+      en_US: "The URL of the news list page to extract links from"
+      zh_Hans: "要提取链接的新闻列表页面网址"
+      pt_BR: "The URL of the news list page to extract links from"
+    llm_description: "The URL of the news list page to extract links from"
+    form: llm
+  - name: boxclass
+    type: string
+    required: true
+    label:
+      en_US: Parent Class
+      zh_Hans: 父类名
+      pt_BR: Parent Class
+    human_description:
+      en_US: "CSS class name of the parent container, multiple classes separated by comma or space"
+      zh_Hans: "父容器的CSS类名，多个类名用逗号或空格分隔"
+      pt_BR: "CSS class name of the parent container, multiple classes separated by comma or space"
+    llm_description: "CSS class name of the parent container, multiple classes separated by comma or space"
+    form: llm
+  - name: subclass
+    type: string
+    required: false
+    label:
+      en_US: Sub Class
+      zh_Hans: 子类名
+      pt_BR: Sub Class
+    human_description:
+      en_US: "CSS class name or HTML tag for sub-elements within the parent container. Supports HTML tag format like <li>, <span>, <div> etc."
+      zh_Hans: "父容器内子元素的CSS类名或HTML标签名。支持HTML标签格式如<li>、<span>、<div>等"
+      pt_BR: "CSS class name or HTML tag for sub-elements within the parent container. Supports HTML tag format like <li>, <span>, <div> etc."
+    llm_description: "CSS class name or HTML tag for sub-elements within the parent container. Supports comma or space separated multiple class names, or HTML tag format like <li>, <span>, <div> etc."
+    form: llm
+  - name: aclass
+    type: string
+    required: false
+    label:
+      en_US: Link Class
+      zh_Hans: 链接类名
+      pt_BR: Link Class
+    human_description:
+      en_US: "CSS class name of the anchor tags (optional)"
+      zh_Hans: "锚标签的CSS类名（可选）"
+      pt_BR: "CSS class name of the anchor tags (optional)"
+    llm_description: "CSS class name of the anchor tags (optional)"
+    form: llm
+  - name: link
+    type: string
+    required: false
+    label:
+      en_US: Base URL
+      zh_Hans: 基础网址
+      pt_BR: Base URL
+    human_description:
+      en_US: "Base URL to prepend to relative links (optional)"
+      zh_Hans: "用于拼接相对链接的基础网址（可选）"
+      pt_BR: "Base URL to prepend to relative links (optional)"
+    llm_description: "Base URL to prepend to relative links (optional)"
+    form: llm
+  - name: blockurl
+    type: string
+    required: false
+    label:
+      en_US: Block URL
+      zh_Hans: 屏蔽链接
+      pt_BR: Block URL
+    human_description:
+      en_US: "Keywords to block URLs containing these terms, supports comma or space separated multiple keywords"
+      zh_Hans: "屏蔽包含这些关键词的链接，支持逗号或空格分隔多个关键词"
+      pt_BR: "Keywords to block URLs containing these terms, supports comma or space separated multiple keywords"
+    llm_description: "Keywords to block URLs containing these terms, supports comma or space separated multiple keywords. Empty links (#) and javascript: links are automatically blocked."
+    form: llm
+  - name: use_browser
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Use Browser
+      zh_Hans: 使用浏览器
+      pt_BR: Use Browser
+    human_description:
+      en_US: "Use headless browser to render JavaScript content (required for Vue/React/Angular SPAs)"
+      zh_Hans: "使用无头浏览器渲染JavaScript内容（Vue/React/Angular等SPA应用必需）"
+      pt_BR: "Use headless browser to render JavaScript content (required for Vue/React/Angular SPAs)"
+    llm_description: "Use headless browser to render JavaScript content, required for Vue/React/Angular SPAs and other dynamic websites"
+    form: form
+extra:
+  python:
+    source: tools/listlink.py
